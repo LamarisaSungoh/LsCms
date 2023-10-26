@@ -95,16 +95,7 @@ class ClassScheduleList(generics.ListCreateAPIView):
 class ClassScheduleDetails(generics.RetrieveUpdateDestroyAPIView):
     queryset = models.ClassSchedule.objects.all()
     serializer_class = serializer.ClassScheduleSerializer
-
-# Views for QuizQAndA
-class QuizQAndAList(generics.ListCreateAPIView):
-    queryset = models.QuizQAndA.objects.all()
-    serializer_class = serializer.QuizQAndASerializer
-
-class QuizQAndADetails(generics.RetrieveUpdateDestroyAPIView):
-    queryset = models.QuizQAndA.objects.all()
-    serializer_class = serializer.QuizQAndASerializer
-
+   
 # Views for QuizQAndA
 class QuizesList(generics.ListCreateAPIView):
     queryset = models.Quizes.objects.all()

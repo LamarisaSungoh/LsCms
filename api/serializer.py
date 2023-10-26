@@ -4,7 +4,8 @@ from . import models
 class InstructorSerializer(serializers.ModelSerializer):
     class Meta:
         model=models.Instructor
-        fields=['id', 'firstName', 'lastName', 'email', 'password', 'dob', 'address', 'contactNumber', 'verificationStatus']
+        fields='__all__'
+        #fields=['id', 'firstName', 'lastName', 'email', 'password', 'dob', 'address', 'contactNumber', 'verificationStatus']
 
 
 # Serializer for Student
@@ -41,7 +42,7 @@ class SyllabusSerializer(serializers.ModelSerializer):
 class ContentSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Content
-        fields = ['id', 'fk_syllabus', 'contentTitle', 'description', 'fk_intructor', 'uploadDate', 'totalViews']
+        fields = '__all__'
 
 # Serializer for Material
 class MaterialSerializer(serializers.ModelSerializer):
@@ -60,12 +61,6 @@ class ClassScheduleSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.ClassSchedule
         fields = ['id', 'classTitle', 'description', 'fk_nstructor', 'fk_course', 'classDate', 'classTime', 'duration']
-
-# Serializer for QuizQAndA
-class QuizQAndASerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.QuizQAndA
-        fields = ['id', 'quizQuestion', 'quizAnswer', 'optionA', 'optionB', 'optionC']
 
 # Serailizer for Quizes
 class QuizesSerializer(serializers.ModelSerializer):

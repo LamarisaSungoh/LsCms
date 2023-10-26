@@ -19,7 +19,7 @@ class Instructor(models.Model):
 
     contactNumber = models.CharField(max_length=10)
 
-    # profilePicture = models.ImageField(null=True, blank=True, upload_to="images/")
+    profilePicture = models.ImageField(null=True, blank=True, default=1)
 
     verificationStatus = models.CharField(max_length=100)
 
@@ -101,6 +101,8 @@ class Course(models.Model):
 
     fk_intructor = models.ForeignKey(Instructor, on_delete=models.CASCADE, verbose_name="Intructor")
 
+    fk_student = models.ForeignKey(Student, on_delete=models.CASCADE, verbose_name="Student",null=True)
+
     enrollmentCapacity = models.IntegerField()
 
     startDate = models.DateField(null=False)
@@ -164,14 +166,15 @@ class Syllabus(models.Model):
 # Content Model here.
 
 class Content(models.Model):
+    fk_syllabus = models.ForeignKey(Syllabus, on_delete=models.CASCADE, verbose_name="Syllabus")
 
-    fk_syllabus = models.ForeignKey(Syllabus, on_delete=models.CASCADE, verbose_name="Sallabus")
-
-    contentTitle = models.CharField(max_length=150)
+    contentTitle = models.CharField(max_length=150,null=True)
 
     description = models.TextField()
 
     fk_intructor = models.ForeignKey(Instructor, on_delete=models.CASCADE, verbose_name="Instructor")
+
+    content_url = models.URLField(max_length=200,null=True)
 
     uploadDate = models.DateField(null=False)
 
@@ -186,7 +189,6 @@ class Content(models.Model):
     def __str__(self):
 
         return self.contentTitle
-
  
 
 # Material Model here.
@@ -235,7 +237,7 @@ class ClassSchedule(models.Model):
 
     description = models.CharField(max_length=150)
 
-    fk_nstructor = models.ForeignKey(Instructor, on_delete=models.CASCADE, verbose_name="Instructor")
+    fk_instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE, verbose_name="Instructor")
 
     fk_course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name="Course")
 
@@ -250,30 +252,30 @@ class ClassSchedule(models.Model):
         verbose_name_plural = "Class Schedule"
 
  
+    
 
 # QuizQAndA Model here.
 
-class QuizQAndA(models.Model):
+# class QuizQAndA(models.Model):
 
-    quizQuestion = models.CharField(max_length=200)
+#     quizQuestion = models.CharField(max_length=200)
 
-    quizAnswer = models.CharField(max_length=200)
+#     quizAnswer = models.CharField(max_length=20)
 
-    optionA = models.CharField(max_length=200)
+#     optionA = models.CharField(max_length=200)
 
-    optionB = models.CharField(max_length=200)
+#     optionB = models.CharField(max_length=200)
 
-    optionC = models.CharField(max_length=200)
+#     optionC = models.CharField(max_length=200)
 
-    class Meta:
+#     class Meta:
 
-        verbose_name_plural = "QuizQandA"
-
+#         verbose_name_plural = "QuizQandA"
  
 
-    def __str__(self):
+#     def __str__(self):
 
-        return self.quizAnswer
+#         return self.quizAnswer
 
  
 
@@ -281,23 +283,15 @@ class QuizQAndA(models.Model):
 
 class Quizes(models.Model):
 
-    fk_quizQAndAID = models.ForeignKey(QuizQAndA, on_delete=models.CASCADE, verbose_name="Answer")
-
     title = models.CharField(max_length=100)
-
-    maxScore = models.IntegerField()
-
-    userScore = models.IntegerField()
 
     fk_course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name="Coure")
 
     fk_instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE, verbose_name="Intructor")
 
-    time = models.TimeField()
+    fk_student = models.ForeignKey(Student, on_delete=models.CASCADE, verbose_name="Student",null=True)
 
-    startDate = models.DateField()
-
-    endDate = models.DateField()
+    quiz_url = models.URLField(max_length=200,null=True)
 
     class Meta:
 
