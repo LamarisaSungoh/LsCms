@@ -12,7 +12,8 @@ class InstructorSerializer(serializers.ModelSerializer):
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Student
-        fields = ['id', 'firstName', 'lastName', 'email', 'password', 'dob', 'address', 'contactNumber', 'verificationStatus']
+        fields='__all__'
+        #fields = ['id', 'firstName', 'lastName', 'email', 'password', 'dob', 'address', 'contactNumber', 'verificationStatus']
 
 # Serializer for Category
 class CategorySerializer(serializers.ModelSerializer):

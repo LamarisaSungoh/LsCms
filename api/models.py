@@ -53,6 +53,8 @@ class Student(models.Model):
 
     contactNumber = models.CharField(max_length=10)
 
+    studentprofilePicture = models.ImageField(null=True, blank=True, default=1)
+
     # profilePicture = models.ImageField(null=True, blank=True, upload_to="images/")
 
     verificationStatus = models.CharField(max_length=100)
