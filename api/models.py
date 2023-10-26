@@ -21,7 +21,7 @@ class Instructor(models.Model):
 
     profilePicture = models.ImageField(null=True, blank=True, default=1)
 
-    verificationStatus = models.CharField(max_length=100)
+    #verificationStatus = models.CharField(max_length=100)
 
     class Meta:
 
